@@ -1,6 +1,9 @@
 var myUI;
 
 myUI = {
+    runSplashScreen: function(){
+        myUI.init();
+    },
     init: function(){
         myUI.loadout();
     },
@@ -10,5 +13,5 @@ myUI = {
 }
 
 window.onload = function(){
-    myUI.init();
+    myUI.runSplashScreen();
 };
