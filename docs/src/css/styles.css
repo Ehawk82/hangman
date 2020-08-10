@@ -8,10 +8,10 @@ body {
 	color: grey;
 }
 /*CLASS*/
-.splash {
+.splash,.startPage {
     opacity: 0;
 }
-.splash_full {
+.splash_full,.startPage_full {
     opacity: 1;
 }
 /*ID*/
@@ -21,6 +21,13 @@ body {
     transition:1s all;
     text-align: center;
     line-height: 70vh;
+}
+.startPage, .startPage_full {
+    transition:1s all;
+    text-align: center;
+    height: 50vh;
+    margin: 25vh 0;
+    width: 100vw;
 }
 /*KEYFRAME*/
 
