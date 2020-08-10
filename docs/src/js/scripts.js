@@ -9,7 +9,16 @@ myUI = {
 
         body.append(splash);
 
-        //myUI.init();
+        setTimeout(function(){
+            makeFull(splash);
+            setTimeout(function(){
+                takeFull(splash);
+                deleteThis(splash, 1010);
+                setTimeout(function(){
+                    myUI.init();
+                },1020);
+            },2000);
+        },10);
     },
     init: function(){
         myUI.loadout();
