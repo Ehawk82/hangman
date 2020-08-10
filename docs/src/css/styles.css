@@ -1,3 +1,78 @@
+/*DOM*/
 body {
 	background-color: grey;
+}
+/*CLASS*/
+/*ID*/
+/*MULTI*/
+/*KEYFRAME*/
+
+/* phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+	/*DOM*/
+
+	/*CLASS*/
+
+	/*ID*/
+
+	/*MULTI*/
+
+	/*KEYFRAME*/
+	
+}
+
+/* portrait tablets and large phones, 600px and up */
+@media only screen and (min-width: 600px) {
+	/*DOM*/
+
+	/*CLASS*/
+
+	/*ID*/
+
+	/*MULTI*/
+
+	/*KEYFRAME*/
+	
+}
+
+/* landscape tablets, 768px and up */
+@media only screen and (min-width: 768px) {
+	/*DOM*/
+
+	/*CLASS*/
+
+	/*ID*/
+
+	/*MULTI*/
+
+	/*KEYFRAME*/
+	
+} 
+
+/* laptops/desktops, 992px and up */
+@media only screen and (min-width: 992px) {
+	/*DOM*/
+
+	/*CLASS*/
+
+	/*ID*/
+
+	/*MULTI*/
+
+	/*KEYFRAME*/
+	
+} 
+
+/* large laptops and desktops, 1200px and up */
+@media only screen and (min-width: 1200px) {
+	/*DOM*/
+
+	/*CLASS*/
+
+	/*ID*/
+
+	/*MULTI*/
+
+	/*KEYFRAME*/
+	
 }
