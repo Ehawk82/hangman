@@ -1,10 +1,27 @@
 /*DOM*/
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+}
 body {
-	background-color: grey;
+	color: grey;
 }
 /*CLASS*/
+.splash {
+    opacity: 0;
+}
+.splash_full {
+    opacity: 1;
+}
 /*ID*/
+
 /*MULTI*/
+.splash, .splash_full{
+    transition:1s all;
+    text-align: center;
+    line-height: 70vh;
+}
 /*KEYFRAME*/
 
 /* phones, 600px and down) */
@@ -18,7 +35,7 @@ body {
 	/*MULTI*/
 
 	/*KEYFRAME*/
-	
+
 }
 
 /* portrait tablets and large phones, 600px and up */
