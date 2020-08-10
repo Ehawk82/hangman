@@ -24,7 +24,16 @@ myUI = {
         myUI.loadout();
     },
     loadout: function(){
-        alert("loadout run");
+        var startPage = createEle("div");
+
+        startPage.innerHTML = "start page";
+        startPage.className = "startPage";
+
+        body.append(startPage);
+
+        setTimeout(function(){
+            makeFull(startPage);
+        },10);
     }
 }
 
