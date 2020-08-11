@@ -7,10 +7,10 @@ startBtns = [
     "UPGRADE"
 ];
 pageLabels = [
-    "LEVEL #",
-    "LEVEL PAGE",
-    "SETTINGS AND OPTIONS",
-    "UPGRADES AND SUPPORT"
+    "&nbsp;",
+    "LEVELS",
+    "SETTINGS",
+    "UPGRADES"
 ];
 
 myUI = {
@@ -67,7 +67,7 @@ myUI = {
                 pLabel = createEle("h2"),
                 xOut = createEle("button");
 
-            xOut.innerHTML = "❌";
+            xOut.innerHTML = "✖️";
             xOut.className = "xOut";
             xOut.onclick = myUI.xOutFunc(divBase);
 
