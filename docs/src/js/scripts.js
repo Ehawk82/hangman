@@ -1,4 +1,11 @@
-var myUI;
+var myUI, startBtns;
+
+startBtns = [
+    "GO!",
+    "LEVELS",
+    "SETTINGS",
+    "UPGRADE"
+];
 
 myUI = {
     runSplashScreen: function(){
@@ -24,16 +31,43 @@ myUI = {
         myUI.loadout();
     },
     loadout: function(){
-        var startPage = createEle("div");
+        var startPage = createEle("div"),
+            startBtnHolder = createEle("div");
 
-        startPage.innerHTML = "start page";
+        startBtnHolder.className = "startBtnHolder";
+        
+        for (var i = 0; i < startBtns.length; i++) {
+            var btn = createEle("button");
+
+            btn.innerHTML = startBtns[i];
+            btn.onclick = myUI.stBtnClicked(i,startPage);
+
+            startBtnHolder.append(btn);
+        }
+
         startPage.className = "startPage";
+        startPage.append(startBtnHolder);
 
         body.append(startPage);
 
         setTimeout(function(){
             makeFull(startPage);
         },10);
+    },
+    stBtnClicked: function(x,startPage){
+        return function(){
+            deleteThis(startPage, 0);
+            var divBase = createEle("div");
+
+            divBase.innerHTML = startBtns[x];
+            divBase.className = "divBase";
+
+            body.append(divBase);
+
+            setTimeout(function(){
+                makeFull(divBase);
+            },100);
+        }
     }
 }
 
