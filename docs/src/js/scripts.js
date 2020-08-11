@@ -1,10 +1,16 @@
-var myUI, startBtns;
+var myUI, startBtns, pageLabels;
 
 startBtns = [
     "GO!",
     "LEVELS",
     "SETTINGS",
     "UPGRADE"
+];
+pageLabels = [
+    "LEVEL #",
+    "LEVEL PAGE",
+    "SETTINGS AND OPTIONS",
+    "UPGRADES AND SUPPORT"
 ];
 
 myUI = {
@@ -57,16 +63,32 @@ myUI = {
     stBtnClicked: function(x,startPage){
         return function(){
             deleteThis(startPage, 0);
-            var divBase = createEle("div");
+            var divBase = createEle("div"), 
+                pLabel = createEle("h2"),
+                xOut = createEle("button");
 
-            divBase.innerHTML = startBtns[x];
+            xOut.innerHTML = "❌";
+            xOut.className = "xOut";
+            xOut.onclick = myUI.xOutFunc(divBase);
+
+            pLabel.className = "pLabel";
+            pLabel.innerHTML = pageLabels[x];
+            pLabel.append(xOut);
+
             divBase.className = "divBase";
+            divBase.append(pLabel);
 
             body.append(divBase);
 
             setTimeout(function(){
                 makeFull(divBase);
             },100);
+        }
+    },
+    xOutFunc: function(divBase) {
+        return function(){ 
+            deleteThis(divBase,0);
+            myUI.loadout();
         }
     }
 }
