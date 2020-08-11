@@ -8,11 +8,21 @@ body {
 	color: grey;
 }
 /*CLASS*/
-.splash,.startPage {
+.splash,.startPage,.divBase {
     opacity: 0;
 }
-.splash_full,.startPage_full {
+.splash_full,.startPage_full,.divBase_full {
     opacity: 1;
+}
+.startBtnHolder {
+    display: inline-grid;
+}
+.startBtnHolder button {
+    margin: .3em auto;
+    font-size: 5vh;
+    width:70vw;
+    line-height: 10vh;
+
 }
 /*ID*/
 
@@ -21,13 +31,22 @@ body {
     transition:1s all;
     text-align: center;
     line-height: 70vh;
+    cursor: default;
 }
 .startPage, .startPage_full {
     transition:1s all;
     text-align: center;
     height: 50vh;
-    margin: 25vh 0;
+    margin: 5vh 0;
     width: 100vw;
+}
+
+.divBase,.divBase_full {
+    transition:1s all;
+    background-color: darkgrey;
+    color:white;
+    width: 100vw;
+    height: 100vh;
 }
 /*KEYFRAME*/
 
