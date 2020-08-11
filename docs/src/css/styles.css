@@ -22,7 +22,16 @@ body {
     font-size: 5vh;
     width:70vw;
     line-height: 10vh;
-
+}
+.pLabel {
+    background-color: rgba(0,0,0,.5);
+    margin: 0;
+    line-height:50px;
+}
+.xOut {
+    float:right;
+    height:50px;
+    width: 50px;
 }
 /*ID*/
 
