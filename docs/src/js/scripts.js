@@ -6,6 +6,7 @@ startBtns = [
     "SETTINGS",
     "UPGRADE"
 ];
+
 pageLabels = [
     "&nbsp;",
     "LEVELS",
@@ -80,10 +81,16 @@ myUI = {
 
             body.append(divBase);
 
+            myUI.genPage(x,divBase);
+
             setTimeout(function(){
                 makeFull(divBase);
             },100);
         }
+    },
+    genPage: function(x,divBase) {
+
+        divBase.append(x + " PAGE");
     },
     xOutFunc: function(divBase) {
         return function(){ 
