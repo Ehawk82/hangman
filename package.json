@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Ehawk82/hangman/issues"
   },
-  "homepage": "https://github.com/Ehawk82/hangman#readme"
+  "homepage": "https://github.com/Ehawk82/hangman#readme",
+  "dependencies": {
+    "random-words": "^1.1.1"
+  }
 }

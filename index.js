@@ -1,1 +1,1 @@
-console.log("hello server");
+var randomWords = require('random-words');

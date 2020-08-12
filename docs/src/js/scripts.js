@@ -89,7 +89,9 @@ myUI = {
         }
     },
     genPage: function(x,divBase) {
-
+        if(x===0){
+            console.log(rand);
+        }
         divBase.append(x + " PAGE");
     },
     xOutFunc: function(divBase) {
