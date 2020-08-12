@@ -13,6 +13,9 @@ button {
     font-weight: bolder;
     cursor: pointer;
 }
+::selection {
+    background: rgba(255, 255, 255, 0);
+}
 /*CLASS*/
 .splash,.startPage,.divBase {
     opacity: 0;
