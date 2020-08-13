@@ -90,7 +90,7 @@ myUI = {
     },
     genPage: function(x,divBase) {
         if(x===0){
-            console.log(rand);
+            //pull hangman word
         }
         divBase.append(x + " PAGE");
     },
