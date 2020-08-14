@@ -90,9 +90,13 @@ myUI = {
     },
     genPage: function(x,divBase) {
         if(x===0){
-            //pull hangman word
+            var allWords = createEle("div");
+
+            for (var i = 0; i < myBundle.words.length; i++) {
+                allWords.innerHTML +=  "<p style='text-indent:20px;'>" + myBundle.words[i] + "</p>";
+            }
+            divBase.append(allWords);
         }
-        divBase.append(x + " PAGE");
     },
     xOutFunc: function(divBase) {
         return function(){ 

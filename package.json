@@ -20,5 +20,7 @@
     "url": "https://github.com/Ehawk82/hangman/issues"
   },
   "homepage": "https://github.com/Ehawk82/hangman#readme",
-  "dependencies": {}
+  "dependencies": {
+    "rollup": "^2.24.0"
+  }
 }
