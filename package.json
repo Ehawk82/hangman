@@ -1,7 +1,7 @@
 {
   "name": "hangman",
   "version": "1.0.0",
-  "description": "simple game",
+  "description": "- standard hangman rules apply\r - 1 free letter token per match\r - 3 matches per level:\r \t+ 1st match are simple words\r \t+ 2nd match are basic words\r \t+ 3rd match are more complex words\r - levels unlock larger words\r - 10 levels\r - users cannot spend free letter tokens",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -14,16 +14,10 @@
     "type": "git",
     "url": "git+https://github.com/Ehawk82/hangman.git"
   },
-  "author": "Jason Graziano",
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Ehawk82/hangman/issues"
   },
-  "homepage": "https://github.com/Ehawk82/hangman#readme",
-  "dependencies": {
-    "word-list": "^3.1.0"
-  },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^15.0.0"
-  }
+  "homepage": "https://github.com/Ehawk82/hangman#readme"
 }
