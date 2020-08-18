@@ -91,10 +91,7 @@ myUI = {
     genPage: function(x,divBase) {
         if(x===0){
             var allWords = createEle("div");
-
-            for (var i = 0; i < myBundle.words.length; i++) {
-                allWords.innerHTML +=  "<p style='text-indent:20px;'>" + myBundle.words[i] + "</p>";
-            }
+            console.log();
             divBase.append(allWords);
         }
     },
