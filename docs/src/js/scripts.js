@@ -91,7 +91,7 @@ myUI = {
     genPage: function(x,divBase) {
         if(x===0){
             var allWords = createEle("div");
-            console.log();
+            console.log(wordArray);
             divBase.append(allWords);
         }
     },

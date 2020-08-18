@@ -1,1 +1,3 @@
-console.log("hello node");
+import update from './update.js';
+
+update();
