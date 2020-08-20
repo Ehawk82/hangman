@@ -35,6 +35,7 @@ myUI = {
         },10);
     },
     init: function(){
+        LSinit("lsStash",lsStash);
         myUI.loadout();
     },
     loadout: function(){
@@ -91,7 +92,11 @@ myUI = {
     genPage: function(x,divBase) {
         if(x===0){
             var allWords = createEle("div");
-            console.log(wordArray);
+
+            //for (var i = 0; i < basicStash.length; i++) {
+                //allWords.innerHTML += "<p>"+basicStash[i]+"</p>";
+            //}
+            console.log(lsStash);
             divBase.append(allWords);
         }
     },
