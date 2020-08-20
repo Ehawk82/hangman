@@ -4,38 +4,51 @@ startBtns = [
     "GO!",
     "LEVELS",
     "SETTINGS",
-    "UPGRADE"
+    "EXTRAS"
 ];
 
 pageLabels = [
     "&nbsp;",
     "LEVELS",
     "SETTINGS",
-    "UPGRADES"
+    "EXTRAS"
 ];
 
 myUI = {
     runSplashScreen: function(){
+        var settings = parseLS("settings");
+        if(settings){
+            if (settings.splash === true) {
+                myUI.splashRuns();
+            } else {
+                myUI.init();
+            }
+        }else{ 
+            myUI.splashRuns();
+        }
+    },
+    splashRuns: function(){
         var splash = createEle("div");
 
-        splash.innerHTML = "HANGMAN/BOT";
-        splash.className = "splash";
+            splash.innerHTML = "HANGMAN/BOT";
+            splash.className = "splash";
 
-        body.append(splash);
+            body.append(splash);
 
-        setTimeout(function(){
-            makeFull(splash);
             setTimeout(function(){
-                takeFull(splash);
-                deleteThis(splash, 1010);
+                makeFull(splash);
                 setTimeout(function(){
-                    myUI.init();
-                },1020);
-            },2000);
-        },10);
+                    takeFull(splash);
+                    deleteThis(splash, 1010);
+                    setTimeout(function(){
+                        myUI.init();
+                    },1020);
+                },2000);
+            },10);
     },
     init: function(){
         LSinit("lsStash",lsStash);
+        LSinit("settings",settings);
         myUI.loadout();
     },
     loadout: function(){
@@ -90,14 +103,66 @@ myUI = {
         }
     },
     genPage: function(x,divBase) {
-        if(x===0){
-            var allWords = createEle("div");
+        var settings = parseLS("settings");
 
-            //for (var i = 0; i < basicStash.length; i++) {
-                //allWords.innerHTML += "<p>"+basicStash[i]+"</p>";
-            //}
-            console.log(lsStash);
+        if(x===0){
+            myUI.genHangmanSession(divBase,settings);
+        }
+        if(x===1){
+            myUI.genLevels(divBase,settings);
+        }
+        if(x===2){
+            myUI.genSettings(divBase,settings);
+        }
+        if(x===3){
+            myUI.genExtras(divBase,settings);
+        }
+    },
+    genExtras: function(divBase,settings) {
+        var extrasHolder = createEle("div");
+
+        extrasHolder.innerHTML = "extra shit";
+
+        divBase.append(extrasHolder);
+    },
+    genLevels: function(divBase,settings) {
+        var levels = createEle("div");
+
+        levels.innerHTML = "ALL MY LEVELS";
+
+        divBase.append(levels);
+    },
+    genSettings: function(divBase,settings) {
+        var settPage = createEle("div"),
+            splashBtn = createEle("button"),spl;
+
+            if(settings.splash === true){
+                spl = "ON";
+            } else {
+                spl = "OFF";
+            }
+            splashBtn.innerHTML = "Splash Screen: " + spl;
+            splashBtn.onclick = myUI.toggleSplash(settings,splashBtn,spl);
+
+            settPage.append(splashBtn);
+
+            divBase.append(settPage);
+    },
+    genHangmanSession: function(divBase,settings) {
+        var allWords = createEle("div");
+
+            for (var i = 0; i < basicStash.length; i++) {
+                allWords.innerHTML += "<p>"+basicStash[i]+"</p>";
+            }
             divBase.append(allWords);
+    },
+    toggleSplash: function(settings,splashBtn,spl){
+        return function() {
+            settings.splash = (settings.splash === true)? false : true;
+            spl = (spl === "ON")? "OFF" : "ON";
+            splashBtn.innerHTML = "Splash Screen: " + spl;
+            saveLS("settings",settings);
+
         }
     },
     xOutFunc: function(divBase) {
