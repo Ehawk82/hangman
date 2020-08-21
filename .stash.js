@@ -11,3 +11,8 @@ var settings = {
 var lsStash = {
 	0: {word:"",used:false,level:0}
 }
+
+var userdata = {
+	level: 1,
+	wordCount: 0
+}

@@ -47,6 +47,7 @@ myUI = {
             },10);
     },
     init: function(){
+        LSinit("userdata",userdata);
         LSinit("lsStash",lsStash);
         LSinit("settings",settings);
         myUI.loadout();
@@ -103,36 +104,54 @@ myUI = {
         }
     },
     genPage: function(x,divBase) {
-        var settings = parseLS("settings");
+        var settings = parseLS("settings"),
+            uData = parseLS("userdata");
 
         if(x===0){
-            myUI.genHangmanSession(divBase,settings);
+            myUI.genHangmanSession(divBase,settings,uData);
         }
         if(x===1){
-            myUI.genLevels(divBase,settings);
+            myUI.genLevels(divBase,settings,uData);
         }
         if(x===2){
-            myUI.genSettings(divBase,settings);
+            myUI.genSettings(divBase,settings,uData);
         }
         if(x===3){
-            myUI.genExtras(divBase,settings);
+            myUI.genExtras(divBase,settings,uData);
         }
     },
-    genExtras: function(divBase,settings) {
+    genExtras: function(divBase,settings,uData) {
         var extrasHolder = createEle("div");
 
         extrasHolder.innerHTML = "extra shit";
 
         divBase.append(extrasHolder);
     },
-    genLevels: function(divBase,settings) {
-        var levels = createEle("div");
+    genLevels: function(divBase,settings,uData) {
+        var levels = createEle("div"),
+            lvHolder = createEle("div");
 
-        levels.innerHTML = "ALL MY LEVELS";
+        lvHolder.className = "lvHolder";
+        for (var i = 1; i < 31; i++) {
+            var box = createEle("div"),t;
+
+            if (uData.level >= i) {
+                t = "box_full";
+            } else {
+                t = "box";
+            }
+
+            box.innerHTML = i;
+            box.className = t;
+
+            lvHolder.append(box);
+        }
+
+        levels.append(lvHolder);
 
         divBase.append(levels);
     },
-    genSettings: function(divBase,settings) {
+    genSettings: function(divBase,settings,uData) {
         var settPage = createEle("div"),
             splashBtn = createEle("button"),spl;
 
@@ -148,7 +167,7 @@ myUI = {
 
             divBase.append(settPage);
     },
-    genHangmanSession: function(divBase,settings) {
+    genHangmanSession: function(divBase,settings,uData) {
         var allWords = createEle("div");
 
             for (var i = 0; i < basicStash.length; i++) {

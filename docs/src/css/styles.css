@@ -46,9 +46,29 @@ button {
     background-color: grey;
     border:none;
 }
+.lvHolder {
+    margin:0 5vw;
+    width:90vw;
+}
+
+.box {
+    display: none;
+}
+.box_full {
+    display:inline-grid;
+}
 /*ID*/
 
 /*MULTI*/
+.box, .box_full {
+    background-color: lightgrey;
+    box-shadow: 0 0 2px black, 0 0 2px black;
+    width:10vw;
+    line-height: 10vw;
+    margin: 5px;
+    text-align: center;
+    cursor: pointer;
+}
 .splash, .splash_full{
     transition:1s all;
     text-align: center;
