@@ -14,5 +14,6 @@ var lsStash = {
 
 var userdata = {
 	level: 1,
+	stars: 0, 
 	wordCount: 0
 }
