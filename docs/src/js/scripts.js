@@ -133,15 +133,30 @@ myUI = {
 
         lvHolder.className = "lvHolder";
         for (var i = 1; i < 31; i++) {
-            var box = createEle("div"),t;
+            var box = createEle("div"),t,
+                stars = createEle("div");
 
             if (uData.level >= i) {
                 t = "box_full";
             } else {
                 t = "box";
             }
+            for (var k = 1; k < 4; k++) {
+                var star = createEle("span");
 
-            box.innerHTML = i;
+                if (uData.stars >= k) {
+                    s = "star_full";
+                } else {
+                    s = "star";
+                }
+                star.innerHTML = "⭐";
+                star.className = s;
+                star.setAttribute("data-index", k);
+
+                stars.append(star);
+            }
+
+            box.append(i,stars);
             box.className = t;
 
             lvHolder.append(box);

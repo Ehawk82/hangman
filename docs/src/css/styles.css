@@ -57,6 +57,16 @@ button {
 .box_full {
     display:inline-grid;
 }
+.box_full:active {
+    opacity: .8;
+}
+.star {
+    filter: grayscale(60%);
+    opacity: .3;
+}
+.star_full {
+    filter: grayscale(40%);
+}
 /*ID*/
 
 /*MULTI*/
@@ -64,7 +74,8 @@ button {
     background-color: lightgrey;
     box-shadow: 0 0 2px black, 0 0 2px black;
     width:10vw;
-    line-height: 10vw;
+    height: 10vw;
+    line-height: 5vw;
     margin: 5px;
     text-align: center;
     cursor: pointer;
