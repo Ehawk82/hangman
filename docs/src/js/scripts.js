@@ -170,25 +170,48 @@ myUI = {
         var settPage = createEle("div"),
             splashBtn = createEle("button"),spl;
 
-            if(settings.splash === true){
-                spl = "ON";
-            } else {
-                spl = "OFF";
-            }
-            splashBtn.innerHTML = "Splash Screen: " + spl;
-            splashBtn.onclick = myUI.toggleSplash(settings,splashBtn,spl);
+        if(settings.splash === true){
+            spl = "ON";
+        } else {
+            spl = "OFF";
+        }
+        splashBtn.innerHTML = "Splash Screen: " + spl;
+        splashBtn.onclick = myUI.toggleSplash(settings,splashBtn,spl);
 
-            settPage.append(splashBtn);
+        settPage.append(splashBtn);
 
-            divBase.append(settPage);
+        divBase.append(settPage);
     },
     genHangmanSession: function(divBase,settings,uData) {
-        var allWords = createEle("div");
+        var hangBox = createEle("div"),
+            letterBox = createEle("div"),
+            letterIn = createEle("input");
 
-            for (var i = 0; i < basicStash.length; i++) {
-                allWords.innerHTML += "<p>"+basicStash[i]+"</p>";
-            }
-            divBase.append(allWords);
+        letterIn.type = "text";
+        letterIn.maxLength = 1;
+        letterIn.className = "letterIn";
+        letterIn.onkeyup = function(){
+            return letterIn.value = this.value.toUpperCase();
+        }
+        
+        letterBox.className = "letterBox";
+        for (var i = 0; i < alphabet.length; i++) {
+            var lttr = createEle("span");
+
+            lttr.innerHTML = alphabet[i];
+
+            letterBox.append(lttr);
+        }
+
+        hangBox.className = "hangBox";
+        hangBox.innerHTML = "hang bot goes here"
+
+        divBase.append(hangBox,letterBox,letterIn);
+    },
+    checkLetter: function(x) {
+        return function() {
+            console.log(x);
+        }
     },
     toggleSplash: function(settings,splashBtn,spl){
         return function() {

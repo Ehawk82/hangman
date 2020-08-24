@@ -67,6 +67,25 @@ button {
 .star_full {
     filter: grayscale(40%);
 }
+.letterIn {
+    width:12vw;
+    line-height:12vw;
+    font-size: 6vw;
+    text-align: center;
+    cursor: pointer;
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+    outline: 5px solid grey;
+    position: absolute;
+    bottom:1vw;
+    left:44vw;
+    &:focus {
+      outline: none; 
+    }
+}
+.letterIn:focus {
+    outline: 5px solid orange;
+}
 /*ID*/
 
 /*MULTI*/

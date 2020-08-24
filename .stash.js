@@ -2,6 +2,8 @@ var basicStash = [
 	"drawn","feelings","overnight","habitat","pirate"
 ];
 
+var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
 var settings = {
 	sound: {on:true,vol:0.5},
 	cheats: false,
