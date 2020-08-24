@@ -11,13 +11,14 @@ var settings = {
 }
 
 var lsStash = {
-	0: {word:"",used:false,level:0}
+	0: {word:"",used:false,index:0},
+	1: {word:"habitat",used:true,index:3}
 }
 
 var userdata = {
 	level: 1,
 	levels: {
-		0: {stars:0,completed:false}
+		0: {stars:1,completed:false}
 	}, 
 	wordCount: 0
 }

@@ -183,30 +183,42 @@ myUI = {
         divBase.append(settPage);
     },
     genHangmanSession: function(divBase,settings,uData) {
+        var lsStash = parseLS("lsStash");
+
         var hangBox = createEle("div"),
             letterBox = createEle("div"),
-            letterIn = createEle("input");
+            blankletterGrid = createEle("div"),
+            botBtn = createEle("button"),r;
 
-        letterIn.type = "text";
-        letterIn.maxLength = 1;
-        letterIn.className = "letterIn";
-        letterIn.onkeyup = function(){
-            return letterIn.value = this.value.toUpperCase();
-        }
-        
+        botBtn.innerHTML = "My HangBot";
+
+        myUI.randomWord(basicStash,blankletterGrid,lsStash,uData);
+
+        blankletterGrid.className = "blankletterGrid";
+
         letterBox.className = "letterBox";
         for (var i = 0; i < alphabet.length; i++) {
-            var lttr = createEle("span");
+            var lttr = createEle("div");
 
             lttr.innerHTML = alphabet[i];
+            lttr.className = "lttr";
 
             letterBox.append(lttr);
         }
 
         hangBox.className = "hangBox";
-        hangBox.innerHTML = "hang bot goes here"
+        hangBox.append(blankletterGrid,botBtn);
 
-        divBase.append(hangBox,letterBox,letterIn);
+        divBase.append(hangBox,letterBox);
+    },
+    randomWord: function(r,blG,lsStash,uData){
+        var n = Math.floor(Math.random() * (r.length - 0 + 1)) + 0;
+
+        var w = r[n];
+        
+        for (var i = 1; i < w.length; i++) {
+            blG.innerHTML += "_";
+        }
     },
     checkLetter: function(x) {
         return function() {

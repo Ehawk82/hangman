@@ -67,24 +67,35 @@ button {
 .star_full {
     filter: grayscale(40%);
 }
-.letterIn {
-    width:12vw;
-    line-height:12vw;
-    font-size: 6vw;
+.lttr {
+    box-shadow: 0 0 2px black, 0 0 2px black;
     text-align: center;
+    width:8vw;
+    line-height: 8vw;
+    font-size: 6vw;
+    margin:.25vw;
+    background-color: silver;
+    display:inline-block;
     cursor: pointer;
-    color: transparent;
-    text-shadow: 0 0 0 #000;
-    outline: 5px solid grey;
-    position: absolute;
-    bottom:1vw;
-    left:44vw;
-    &:focus {
-      outline: none; 
-    }
 }
-.letterIn:focus {
-    outline: 5px solid orange;
+.letterBox {
+    position: fixed;
+    bottom: 1vw;
+    text-align: center;
+    width:100vw;
+
+}
+.hangBox {
+    background-color: white;
+    color:black;
+    width: 100vw;
+    height:calc(100vh - 50px);
+    text-align: center;
+}
+.blankletterGrid {
+    font-size:6vw;
+    cursor: default;
+    letter-spacing: 10px;
 }
 /*ID*/
 
