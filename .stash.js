@@ -2,6 +2,9 @@ var basicStash = [
 	"DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE"
 ];
 
+var parts = [
+	"Head", "Body", "LeftArm", "RightArm", "LeftLeg", "RightLeg"
+];
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 var settings = {

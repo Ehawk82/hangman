@@ -188,9 +188,15 @@ myUI = {
         var hangBox = createEle("div"),
             letterBox = createEle("div"),
             blankletterGrid = createEle("div"),
-            botBtn = createEle("button"),r;
+            botBtn = createEle("div"),r;
 
-        botBtn.innerHTML = "My HangBot";
+        botBtn.className = "botBtn";
+        for (var p = 0; p < 5; p++) {
+            var part = createEle("div");
+
+            part.innerHTML = "part: " + p;
+            botBtn.append(part);
+        }
 
         blankletterGrid.className = "blankletterGrid";
         myUI.randomWord(basicStash,blankletterGrid,lsStash,uData);
@@ -230,28 +236,18 @@ myUI = {
             var letter = bySelAll(".letter"),
                 myLetter = x.innerHTML;
 
-
-for (var l = 0; l < letter.length; l++) {
-    var n = letter[l].getAttribute("data-index");
-}
-
+            for (var l = 0; l < letter.length; l++) {
+                var n = letter[l].getAttribute("data-index");
+            }
             var bs = basicStash[n];
             var bsLen = bs.length;
-
             for (var i = 0; i < bsLen; i++) {
-                //console.log(bs[i]);
-                //console.log(myLetter);
-
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
                 } else {
-                    //console.log(false);
+                    //limb added
                 }
-
-            }
-            //console.log(bs);
-            //console.log(bsLen);
-            
+            }      
         }
     },
     toggleSplash: function(settings,splashBtn,spl){

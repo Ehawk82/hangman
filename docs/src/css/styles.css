@@ -104,6 +104,12 @@ button {
 .letter {
     display: inline-block;
 }
+.botBtn {
+    background: white;
+    margin:20px 0;
+    width:100vw;
+    height: 50vh;
+}
 /*ID*/
 
 /*MULTI*/
