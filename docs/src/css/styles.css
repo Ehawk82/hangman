@@ -57,9 +57,6 @@ button {
 .box_full {
     display:inline-grid;
 }
-.box_full:active {
-    opacity: .8;
-}
 .star {
     filter: grayscale(60%);
     opacity: .3;
@@ -68,15 +65,22 @@ button {
     filter: grayscale(40%);
 }
 .lttr {
-    box-shadow: 0 0 2px black, 0 0 2px black;
+    box-shadow: 0 0 1px black, 0 0 2px black, 0 0 3px black;
+    text-shadow: 0 0 1px black, 0 0 2px black, 0 0 3px black;
     text-align: center;
-    width:8vw;
-    line-height: 8vw;
-    font-size: 6vw;
-    margin:.25vw;
+    width:6vw;
+    line-height: 6vw;
+    font-size: 5vw;
+    margin:.7vw;
     background-color: silver;
     display:inline-block;
     cursor: pointer;
+}
+.lttr:hover {
+    background-color: darkgrey;
+}
+.lttr:active {
+    opacity: .6;
 }
 .letterBox {
     position: fixed;
@@ -97,6 +101,9 @@ button {
     cursor: default;
     letter-spacing: 10px;
 }
+.letter {
+    display: inline-block;
+}
 /*ID*/
 
 /*MULTI*/
@@ -108,7 +115,7 @@ button {
     line-height: 5vw;
     margin: 5px;
     text-align: center;
-    cursor: pointer;
+    cursor: default;
 }
 .splash, .splash_full{
     transition:1s all;

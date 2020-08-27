@@ -1,4 +1,4 @@
-var myUI, startBtns, pageLabels;
+var myUI, startBtns, pageLabels,w;
 
 startBtns = [
     "GO!",
@@ -192,9 +192,8 @@ myUI = {
 
         botBtn.innerHTML = "My HangBot";
 
-        myUI.randomWord(basicStash,blankletterGrid,lsStash,uData);
-
         blankletterGrid.className = "blankletterGrid";
+        myUI.randomWord(basicStash,blankletterGrid,lsStash,uData);
 
         letterBox.className = "letterBox";
         for (var i = 0; i < alphabet.length; i++) {
@@ -202,6 +201,7 @@ myUI = {
 
             lttr.innerHTML = alphabet[i];
             lttr.className = "lttr";
+            lttr.onclick = myUI.checkLetter(lttr,w);
 
             letterBox.append(lttr);
         }
@@ -212,17 +212,46 @@ myUI = {
         divBase.append(hangBox,letterBox);
     },
     randomWord: function(r,blG,lsStash,uData){
-        var n = Math.floor(Math.random() * (r.length - 0 + 1)) + 0;
+        var n = Math.floor(Math.random() * (r.length)) + 0;
 
         var w = r[n];
-        
-        for (var i = 1; i < w.length; i++) {
-            blG.innerHTML += "_";
+        for (var i = 0; i < w.length; i++) {
+            var letter = createEle("div");
+
+            letter.innerHTML = "_";
+            letter.className = "letter";
+            letter.setAttribute("data-index", n);
+
+            blG.append(letter);
         }
     },
     checkLetter: function(x) {
         return function() {
-            console.log(x);
+            var letter = bySelAll(".letter"),
+                myLetter = x.innerHTML;
+
+
+for (var l = 0; l < letter.length; l++) {
+    var n = letter[l].getAttribute("data-index");
+}
+
+            var bs = basicStash[n];
+            var bsLen = bs.length;
+
+            for (var i = 0; i < bsLen; i++) {
+                //console.log(bs[i]);
+                //console.log(myLetter);
+
+                if (myLetter === bs[i]) {
+                    letter[i].innerHTML = myLetter;
+                } else {
+                    //console.log(false);
+                }
+
+            }
+            //console.log(bs);
+            //console.log(bsLen);
+            
         }
     },
     toggleSplash: function(settings,splashBtn,spl){

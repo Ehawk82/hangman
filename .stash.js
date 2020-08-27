@@ -1,5 +1,5 @@
 var basicStash = [
-	"drawn","feelings","overnight","habitat","pirate"
+	"DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE"
 ];
 
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

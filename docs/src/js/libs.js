@@ -1,3 +1,7 @@
+function bySel(x) { return document.querySelector(x) };
+function byId(x) { return document.getElementById(x) };
+function byClass(x) { return document.getElementsByClassName(x) };
+function bySelAll(x) { return document.querySelectorAll(x) };
 function createEle(x){ return document.createElement(x) };
 function makeFull(x) { return x.className = x.className + "_full" };
 function takeFull(x) { var y,z; return y = x.className.split('_full'), z = y[0], x.className = z };
@@ -8,3 +12,4 @@ function parseLS(x) { var y = loadLS(x), z = JSON.parse(y); return z };
 function clearLS() { return localStorage.clear() };
 function removeLSitem(x) { return localStorage.removeItem(x) };
 function LSinit(x,y) { var keyname = localStorage.getItem(x); if (!keyname || keyname === null) { localStorage.setItem(x, JSON.stringify(y));} };
+function byS(x) { return x.toUpperCase() };
