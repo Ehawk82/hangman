@@ -106,13 +106,45 @@ button {
 }
 .botBtn {
     background: white;
+    text-align: center;
     margin:20px 0;
     width:100vw;
     height: 50vh;
 }
+
+.botHead {
+    width:100px;
+    height: 100px;
+}
+.botBody {
+    width:100px;
+    height: 126px;
+}
+.botLeftArm {
+    width:50px;
+    height: 126px;
+}
+.botRightArm {
+    width:50px;
+    height: 126px;
+}
+.botLeftLeg {
+    width:50px;
+    height: 126px;
+}
+.botRightLeg {
+    width:50px;
+    height: 126px;
+}
 /*ID*/
 
 /*MULTI*/
+.botHead,.botBody,.botLeftArm,.botRightArm,.botLeftLeg,.botRightLeg{
+    background-size: 100%;
+    box-shadow: 0 0 4px red, 0 0 4px red, 0 0 4px red, 0 0 4px red;
+    display: none;
+}
+
 .box, .box_full {
     background-color: lightgrey;
     box-shadow: 0 0 2px black, 0 0 2px black;

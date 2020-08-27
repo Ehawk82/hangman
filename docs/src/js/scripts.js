@@ -194,7 +194,10 @@ myUI = {
         for (var p = 0; p < 5; p++) {
             var part = createEle("div");
 
-            part.innerHTML = "part: " + p;
+            part.innerHTML = "&nbsp;";
+            part.className = "bot" + parts[p];
+            part.style.backgroundImage = "url(src/assets/bot" + parts[p] + ".png)";
+
             botBtn.append(part);
         }
 
@@ -233,20 +236,29 @@ myUI = {
     },
     checkLetter: function(x) {
         return function() {
+            x.onclick = null;
+            x.style.opacity = 0.2;
+            x.style.cursor = "default";
+
             var letter = bySelAll(".letter"),
                 myLetter = x.innerHTML;
 
             for (var l = 0; l < letter.length; l++) {
                 var n = letter[l].getAttribute("data-index");
             }
+
             var bs = basicStash[n];
             var bsLen = bs.length;
+
             for (var i = 0; i < bsLen; i++) {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
+
                 } else {
                     //limb added
                 }
+
+
             }      
         }
     },
