@@ -224,15 +224,33 @@ myUI = {
         var n = Math.floor(Math.random() * (r.length)) + 0;
 
         var w = r[n];
-        for (var i = 0; i < w.length; i++) {
-            var letter = createEle("div");
+        lsStash.forEach(function(item,index){
+            if(item === w){
+                if(lsStash.length === basicStash.length){
+                    //win scenario
+                    myUI.runWin();
+                } else {
+                    myUI.randomWord(r,blG,lsStash,uData);
+                }
+            } else {
+                for (var i = 0; i < w.length; i++) {
+                    var letter = createEle("div");
 
-            letter.innerHTML = "_";
-            letter.className = "letter";
-            letter.setAttribute("data-index", n);
+                    letter.innerHTML = "_";
+                    letter.className = "letter";
+                    letter.setAttribute("data-index", n);
 
-            blG.append(letter);
-        }
+                    blG.append(letter);
+                }
+            }
+        });       
+    },
+    runWin: function(){
+        var winPage = createEle("div");
+
+        winPage.innerHTML = "YOU HAVE SOLVED EVERY WORD!";
+        winPage.className = "winPage";
+        body.append(winPage);
     },
     checkLetter: function(x) {
         return function() {
@@ -253,13 +271,14 @@ myUI = {
             for (var i = 0; i < bsLen; i++) {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
-
                 } else {
                     //limb added
                 }
+                if(letter[i].innerHTML === "_"){
+                        console.log(i);
+                }
+            }
 
-
-            }      
         }
     },
     toggleSplash: function(settings,splashBtn,spl){

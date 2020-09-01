@@ -29,7 +29,7 @@ button {
 .startBtnHolder button {
     margin: .3em auto;
     font-size: 5vh;
-    width:70vw;
+    width:60vw;
     line-height: 10vh;
 }
 .pLabel {
@@ -175,6 +175,14 @@ button {
     color:white;
     width: 100vw;
     height: 100vh;
+}
+.winPage {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
 }
 /*KEYFRAME*/
 

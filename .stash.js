@@ -1,5 +1,5 @@
 var basicStash = [
-	"DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE"
+	"TEST","DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE"
 ];
 
 var parts = [
@@ -10,13 +10,12 @@ var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var settings = {
 	sound: {on:true,vol:0.5},
 	cheats: false,
-	splash: true
+	splash: false
 }
 
-var lsStash = {
-	0: {word:"",used:false,index:0},
-	1: {word:"habitat",used:true,index:3}
-}
+var lsStash = [
+	"TEST"
+]
 
 var userdata = {
 	level: 1,
