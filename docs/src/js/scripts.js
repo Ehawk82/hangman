@@ -1,4 +1,5 @@
-var myUI, startBtns, pageLabels,w;
+var myUI, startBtns, pageLabels,w,count = 0;
+var stashLen = 0;
 
 startBtns = [
     "GO!",
@@ -210,7 +211,7 @@ myUI = {
 
             lttr.innerHTML = alphabet[i];
             lttr.className = "lttr";
-            lttr.onclick = myUI.checkLetter(lttr,w);
+            lttr.onclick = myUI.checkLetter(lttr);
 
             letterBox.append(lttr);
         }
@@ -224,13 +225,23 @@ myUI = {
         var n = Math.floor(Math.random() * (r.length)) + 0;
 
         var w = r[n];
-        lsStash.forEach(function(item,index){
+
+        for (var i = 0; i < w.length; i++) {
+            var letter = createEle("div");
+
+            letter.innerHTML = "_";
+            letter.className = "letter";
+            letter.setAttribute("data-index", n);
+
+            blG.append(letter);
+        }
+        /*
             if(item === w){
                 if(lsStash.length === basicStash.length){
                     //win scenario
                     myUI.runWin();
                 } else {
-                    myUI.randomWord(r,blG,lsStash,uData);
+                    //myUI.randomWord(r,blG,lsStash,uData);
                 }
             } else {
                 for (var i = 0; i < w.length; i++) {
@@ -242,18 +253,20 @@ myUI = {
 
                     blG.append(letter);
                 }
-            }
-        });       
+        }
+        */       
     },
     runWin: function(){
         var winPage = createEle("div");
 
         winPage.innerHTML = "YOU HAVE SOLVED EVERY WORD!";
         winPage.className = "winPage";
+
         body.append(winPage);
     },
     checkLetter: function(x) {
         return function() {
+
             x.onclick = null;
             x.style.opacity = 0.2;
             x.style.cursor = "default";
@@ -271,14 +284,20 @@ myUI = {
             for (var i = 0; i < bsLen; i++) {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
+                    count++;
                 } else {
                     //limb added
                 }
-                if(letter[i].innerHTML === "_"){
-                        console.log(i);
-                }
+                
             }
 
+            if(count === bsLen) {
+                //word solved
+                stashLen++;
+                lsStash[stashLen] = bs;
+                saveLS("lsStash",lsStash);
+                console.log(stashLen);
+            }
         }
     },
     toggleSplash: function(settings,splashBtn,spl){
