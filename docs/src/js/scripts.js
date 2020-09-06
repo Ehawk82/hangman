@@ -1,6 +1,4 @@
 var myUI, startBtns, pageLabels,w,count = 0;
-var stashLen = 0;
-
 startBtns = [
     "GO!",
     "LEVELS",
@@ -225,7 +223,10 @@ myUI = {
         var n = Math.floor(Math.random() * (r.length)) + 0;
 
         var w = r[n];
-
+        if(lsStash.length === basicStash.length){
+            //win scenario
+            myUI.runWin();
+        }
         for (var i = 0; i < w.length; i++) {
             var letter = createEle("div");
 
@@ -235,26 +236,6 @@ myUI = {
 
             blG.append(letter);
         }
-        /*
-            if(item === w){
-                if(lsStash.length === basicStash.length){
-                    //win scenario
-                    myUI.runWin();
-                } else {
-                    //myUI.randomWord(r,blG,lsStash,uData);
-                }
-            } else {
-                for (var i = 0; i < w.length; i++) {
-                    var letter = createEle("div");
-
-                    letter.innerHTML = "_";
-                    letter.className = "letter";
-                    letter.setAttribute("data-index", n);
-
-                    blG.append(letter);
-                }
-        }
-        */       
     },
     runWin: function(){
         var winPage = createEle("div");
@@ -266,6 +247,8 @@ myUI = {
     },
     checkLetter: function(x) {
         return function() {
+            var lsStash = parseLS("lsStash");
+            var stashLen = lsStash.length;
 
             x.onclick = null;
             x.style.opacity = 0.2;
@@ -288,15 +271,12 @@ myUI = {
                 } else {
                     //limb added
                 }
-                
             }
 
             if(count === bsLen) {
                 //word solved
-                stashLen++;
-                lsStash[stashLen] = bs;
+                lsStash[stashLen++] = bs;
                 saveLS("lsStash",lsStash);
-                console.log(stashLen);
             }
         }
     },
