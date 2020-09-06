@@ -223,6 +223,7 @@ myUI = {
         var n = Math.floor(Math.random() * (r.length)) + 0;
 
         var w = r[n];
+        
         if(lsStash.length === basicStash.length){
             //win scenario
             myUI.runWin();
@@ -235,6 +236,8 @@ myUI = {
             letter.setAttribute("data-index", n);
 
             blG.append(letter);
+
+
         }
     },
     runWin: function(){
