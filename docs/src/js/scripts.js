@@ -220,24 +220,33 @@ myUI = {
         divBase.append(hangBox,letterBox);
     },
     randomWord: function(r,blG,lsStash,uData){
+        var lsStash = parseLS("lsStash");
         var n = Math.floor(Math.random() * (r.length)) + 0;
-
+        var gtg = false;
         var w = r[n];
-        
-        if(lsStash.length === basicStash.length){
-            //win scenario
-            myUI.runWin();
-        }
-        for (var i = 0; i < w.length; i++) {
-            var letter = createEle("div");
+        lsStash.forEach(function(element,item,index) {
+            if(element === w && gtg === false){
+                gtg = false;
+                myUI.randomWord(r,blG,lsStash,uData);
+            } else {
+                gtg = true;
+            }
+        });
+        console.log(w);
+        if (gtg === true) {
+            if(lsStash.length === basicStash.length){
+                //win scenario
+                myUI.runWin();
+            }
+            for (var i = 0; i < w.length; i++) {
+                var letter = createEle("div");
 
-            letter.innerHTML = "_";
-            letter.className = "letter";
-            letter.setAttribute("data-index", n);
+                letter.innerHTML = "_";
+                letter.className = "letter";
+                letter.setAttribute("data-index", n);
 
-            blG.append(letter);
-
-
+                blG.append(letter);
+            }
         }
     },
     runWin: function(){
@@ -280,8 +289,25 @@ myUI = {
                 //word solved
                 lsStash[stashLen++] = bs;
                 saveLS("lsStash",lsStash);
+                myUI.wordWon();
             }
         }
+    },
+    wordWon: function(){
+        var wordWinPage = createEle("div"),
+            winMessage = createEle("p");
+            homeBtn = createEle("button");
+
+        homeBtn.innerHTML = "HOME";
+        homeBtn.onclick = function(){ return location.reload() };
+
+        winMessage.innerHTML = "YOU HAVE WON A STAR!";
+
+        wordWinPage.className = "wordWinPage";
+        wordWinPage.append(winMessage,homeBtn);
+
+        body.append(wordWinPage);
+        
     },
     toggleSplash: function(settings,splashBtn,spl){
         return function() {

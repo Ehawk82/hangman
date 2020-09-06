@@ -184,6 +184,15 @@ button {
     height: 100vh;
     background-color: white;
 }
+
+.wordWinPage {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vw;
+    background-color: white;
+}
 /*KEYFRAME*/
 
 /* phones, 600px and down) */
