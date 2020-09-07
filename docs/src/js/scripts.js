@@ -129,7 +129,7 @@ myUI = {
     genLevels: function(divBase,settings,uData) {
         var levels = createEle("div"),
             lvHolder = createEle("div");
-
+        var uData = parseLS("userdata");
         lvHolder.className = "lvHolder";
         for (var i = 1; i < 31; i++) {
             var box = createEle("div"),t,
@@ -143,18 +143,19 @@ myUI = {
             for (var k = 1; k < 4; k++) {
                 var star = createEle("span");
 
-                if (uData.stars >= k) {
+                if (uData.levels[uData.level].stars >= k) {
                     s = "star_full";
                 } else {
                     s = "star";
                 }
+
                 star.innerHTML = "⭐";
                 star.className = s;
                 star.setAttribute("data-index", k);
 
                 stars.append(star);
-            }
 
+            }
             box.append(i,stars);
             box.className = t;
 
@@ -298,11 +299,26 @@ myUI = {
         var wordWinPage = createEle("div"),
             winMessage = createEle("p");
             homeBtn = createEle("button");
+        var uData = parseLS("userdata");
 
         homeBtn.innerHTML = "HOME";
         homeBtn.onclick = function(){ return location.reload() };
 
         winMessage.innerHTML = "YOU HAVE WON A STAR!";
+
+        if (uData.levels[uData.level].stars >= 2) {
+            uData.levels[uData.level].stars = 3;
+            uData.level++;
+            var obj = {
+                stars: 0
+            }
+            uData.levels[uData.level] = obj;        
+        } else {
+            uData.levels[uData.level].stars++;
+        }
+        
+
+        saveLS("userdata", uData);
 
         wordWinPage.className = "wordWinPage";
         wordWinPage.append(winMessage,homeBtn);
