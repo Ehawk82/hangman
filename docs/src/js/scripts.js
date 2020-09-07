@@ -224,16 +224,17 @@ myUI = {
         var n = Math.floor(Math.random() * (r.length)) + 0;
         var gtg = false;
         var w = r[n];
-        lsStash.forEach(function(element,item,index) {
-            if(element === w && gtg === false){
-                gtg = false;
-                myUI.randomWord(r,blG,lsStash,uData);
+
+        const found = lsStash.find(element => element === w);
+
+        if (found){
+            if(lsStash.length === basicStash.length){
+                //win scenario
+                myUI.runWin();
             } else {
-                gtg = true;
+                return myUI.randomWord(r,blG,lsStash,uData);
             }
-        });
-        console.log(w);
-        if (gtg === true) {
+        } else {
             if(lsStash.length === basicStash.length){
                 //win scenario
                 myUI.runWin();
