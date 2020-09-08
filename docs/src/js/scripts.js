@@ -146,7 +146,11 @@ myUI = {
                 if (uData.levels[uData.level].stars >= k) {
                     s = "star_full";
                 } else {
-                    s = "star";
+                    if(i < uData.level){
+                        s = "star_full";
+                    } else {
+                        s = "star";
+                    }
                 }
 
                 star.innerHTML = "⭐";
