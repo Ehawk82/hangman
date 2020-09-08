@@ -1,4 +1,5 @@
 var myUI, startBtns, pageLabels,w,count = 0;
+
 startBtns = [
     "GO!",
     "LEVELS",
