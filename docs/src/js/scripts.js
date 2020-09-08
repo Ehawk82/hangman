@@ -1,4 +1,4 @@
-var myUI, startBtns, pageLabels,w,count = 0;
+var myUI, startBtns, pageLabels,w,count = 0, limbs = 0;
 
 startBtns = [
     "GO!",
@@ -286,19 +286,31 @@ myUI = {
             for (var i = 0; i < bsLen; i++) {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
+
                     count++;
-                } else {
+                } else if(myLetter != bs[i]){
                     //limb added
+/*
+ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as bs[i]
+*/
+                    if (i === 0) {
+                        myUI.runLimb();
+                    }
                 }
             }
 
             if(count === bsLen) {
                 //word solved
+
                 lsStash[stashLen++] = bs;
                 saveLS("lsStash",lsStash);
                 myUI.wordWon();
             }
         }
+    },
+    runLimb: function(){
+        limbs++;
+        return console.log(limbs);
     },
     wordWon: function(){
         var wordWinPage = createEle("div"),
