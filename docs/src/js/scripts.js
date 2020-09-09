@@ -290,12 +290,13 @@ myUI = {
                     count++;
                 } else if(myLetter != bs[i]){
                     //limb added
+
 /*
 ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as bs[i]
 */
-                    if (i === 0) {
-                        myUI.runLimb();
-                    }
+
+                    myUI.runLimb();
+
                 }
             }
 
