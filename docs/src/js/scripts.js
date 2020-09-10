@@ -1,4 +1,10 @@
-var myUI, startBtns, pageLabels,w,count = 0, limbs = 0;
+var myUI, soundboard, startBtns, pageLabels,w,count = 0, limbs = 0;
+
+var tick = new Audio("./src/assets/tic.wav");
+var ding = new Audio("./src/assets/ding.wav");
+var bleep = new Audio("./src/assets/bleep.wav");
+var success = new Audio("./src/assets/success.wav");
+var gameoverSound = new Audio("./src/assets/gameover.wav");
 
 startBtns = [
     "GO!",
@@ -78,6 +84,7 @@ myUI = {
     },
     stBtnClicked: function(x,startPage){
         return function(){
+            soundboard.runTick();
             deleteThis(startPage, 0);
             var divBase = createEle("div"), 
                 pLabel = createEle("h2"),
@@ -196,14 +203,51 @@ myUI = {
             botBtn = createEle("div"),r;
 
         botBtn.className = "botBtn";
-        for (var p = 0; p < 5; p++) {
-            var part = createEle("div");
+        for (var b = 0; b < 3; b++) {
+            var row = createEle("div");
 
-            part.innerHTML = "&nbsp;";
-            part.className = "bot" + parts[p];
-            part.style.backgroundImage = "url(src/assets/bot" + parts[p] + ".png)";
+            row.className = "row";
+            row.innerHTML = "&nbsp;";
 
-            botBtn.append(part);
+            if(b === 0){
+                var head = createEle("div");
+                head.innerHTML = "&nbsp;";
+                head.className = "bot" + parts[0];
+                head.style.backgroundImage = "url(src/assets/bot" + parts[0] + ".png)";
+                row.append(head);
+            }
+
+            if (b === 1) {
+                var armL = createEle("div");
+                    armL.innerHTML = "&nbsp;";
+                    armL.className = "bot" + parts[2];
+                    armL.style.backgroundImage = "url(src/assets/bot" + parts[2] + ".png)";
+                var bodyM = createEle("div");
+                    bodyM.innerHTML = "&nbsp;";
+                    bodyM.className = "bot" + parts[1];
+                    bodyM.style.backgroundImage = "url(src/assets/bot" + parts[1] + ".png)";
+                var armR = createEle("div");
+                    armR.innerHTML = "&nbsp;";
+                    armR.className = "bot" + parts[3];
+                    armR.style.backgroundImage = "url(src/assets/bot" + parts[3] + ".png)";
+
+                row.append(armL,bodyM,armR);
+            }
+
+            if (b === 2) {
+                var legL = createEle("div");
+                    legL.innerHTML = "&nbsp;";
+                    legL.className = "bot" + parts[4];
+                    legL.style.backgroundImage = "url(src/assets/bot" + parts[4] + ".png)";
+                var legR = createEle("div");
+                    legR.innerHTML = "&nbsp;";
+                    legR.className = "bot" + parts[5];
+                    legR.style.backgroundImage = "url(src/assets/bot" + parts[5] + ".png)";
+
+
+                row.append(legL,legR);
+            }
+            botBtn.append(row);
         }
 
         blankletterGrid.className = "blankletterGrid";
@@ -263,6 +307,9 @@ myUI = {
         winPage.className = "winPage";
 
         body.append(winPage);
+
+        soundboard.runSuccess();
+
     },
     checkLetter: function(x) {
         return function() {
@@ -289,20 +336,18 @@ myUI = {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
                     y = myLetter;
+                    soundboard.runDing();
                     count++;
                 }                
             }
-// ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as bs[i]
 
             if(y === null){
                 limbs++;
                 if(limbs === 6) {
-                    alert("GAME OVER!");
-                    location.reload();
+                    myUI.gameoverPage();
                 } else {
-                    alert("LIMB: " + limbs);
+                    myUI.runLimb(limbs);
                 }
-                console.log(limbs);
             }
             if(count === bsLen) {
                 //word solved
@@ -310,17 +355,42 @@ myUI = {
                 lsStash[stashLen++] = bs;
                 saveLS("lsStash",lsStash);
                 myUI.wordWon();
+                soundboard.runSuccess();
             }
 
         }
     },
-    runLimb: function(fBool){
+    gameoverPage: function(){
+        soundboard.runGameOver();
+        var gameOver = createEle("div"),
+            msg = createEle("h2"),
+            btn = createEle("button");
+
+        msg.innerHTML = "GAME OVER!";
+
+        btn.innerHTML = "RESTART!";
+        btn.onclick = function(){ return location.reload() };
+
+        gameOver.className = "gameOver";
+        gameOver.append(msg,btn);
+
+        body.append(gameOver);
+
+        setTimeout(function() {
+            makeFull(gameOver);
+        },100);
+    },
+    runLimb: function(limbs){
+        soundboard.runBleep();
+        var l = limbs - 1;
         limbs++;
-        return console.log(limbs);
+        var part = bySel(".bot" + parts[l]);
+        makeFull(part);
     },
     wordWon: function(){
         var wordWinPage = createEle("div"),
-            winMessage = createEle("p");
+            winMessage = createEle("p"),
+            bigStar = createEle("div");
             homeBtn = createEle("button");
         var uData = parseLS("userdata");
 
@@ -328,6 +398,9 @@ myUI = {
         homeBtn.onclick = function(){ return location.reload() };
 
         winMessage.innerHTML = "YOU HAVE WON A STAR!";
+
+        bigStar.innerHTML = "⭐";
+        bigStar.style.fontSize = "10rem";
 
         if (uData.levels[uData.level].stars >= 2) {
             uData.levels[uData.level].stars = 3;
@@ -344,13 +417,18 @@ myUI = {
         saveLS("userdata", uData);
 
         wordWinPage.className = "wordWinPage";
-        wordWinPage.append(winMessage,homeBtn);
+        wordWinPage.append(winMessage,bigStar,homeBtn);
 
         body.append(wordWinPage);
+
+        setTimeout(function(){
+            makeFull(wordWinPage);
+        },10);
         
     },
     toggleSplash: function(settings,splashBtn,spl){
         return function() {
+            soundboard.runTick();
             settings.splash = (settings.splash === true)? false : true;
             spl = (spl === "ON")? "OFF" : "ON";
             splashBtn.innerHTML = "Splash Screen: " + spl;
@@ -359,9 +437,53 @@ myUI = {
         }
     },
     xOutFunc: function(divBase) {
-        return function(){ 
+        return function(){
+            soundboard.runTick();
             deleteThis(divBase,0);
             myUI.loadout();
+        }
+    }
+}
+soundboard = {
+    runTick: function(){
+        var settings = parseLS("settings");
+        if (settings.sound.on === true) {
+            tick.volume = settings.sound.vol;
+            tick.play();
+        }
+    },
+    runDing: function() {
+        var settings = parseLS("settings");
+        if (settings.sound.on === true) {
+            ding.volume = settings.sound.vol;
+            ding.play();
+        }
+    },
+    runBleep: function(){
+        var settings = parseLS("settings");
+        if (settings.sound.on === true) {
+            bleep.volume = settings.sound.vol;
+            bleep.play();
+        }
+    },
+    runSuccess: function() {
+        var settings = parseLS("settings");
+        if (settings.sound.on === true) {
+            ding.play();
+            setTimeout(function(){
+                success.volume = settings.sound.vol;
+                success.play();
+            },100);
+        }
+    },
+    runGameOver: function() {
+        var settings = parseLS("settings");
+        if (settings.sound.on === true) {
+            gameoverSound.play();
+            setTimeout(function(){
+                gameoverSound.volume = settings.sound.vol;
+                gameoverSound.play();
+            },100);
         }
     }
 }

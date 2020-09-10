@@ -1,5 +1,6 @@
 function bySel(x) { return document.querySelector(x) };
 function byId(x) { return document.getElementById(x) };
+function byTag(x) { return document.getElementsByTagName(x) };
 function byClass(x) { return document.getElementsByClassName(x) };
 function bySelAll(x) { return document.querySelectorAll(x) };
 function createEle(x){ return document.createElement(x) };

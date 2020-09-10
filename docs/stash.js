@@ -1,5 +1,5 @@
 var basicStash = [
-	"TEST","DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE","PARTICIPATE","HONOR","BRUTAL","SOLIDER","PROBLEM","CRISIS",
+	"TEST","DRAWN","FEELINGS","OVERNIGHT","HABITAT","PIRATE","PARTICIPATE","HONOR","BRUTAL","SOLDIER","PROBLEM","CRISIS",
 	"STARVE","MANDATE","HOME","FACTS","SCIENCE","BUBBLE","ROOT","OPTIC","GENEROUS","BOOST","MAPS","FORT","CAPE","VILLIAN",
 	"MAGIC","HERO","VEGAN","BEEF","MORPH","BOAT","SHIP","AWESOME","BRIGHT","APPLE","ORANGE","GRAPE","SEED","MOIST","OFFICE",
 	"DOUBLE"
@@ -11,7 +11,7 @@ var parts = [
 var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 var settings = {
-	sound: {on:true,vol:0.5},
+	sound: {on:true,vol:1},
 	cheats: false,
 	splash: false
 }
