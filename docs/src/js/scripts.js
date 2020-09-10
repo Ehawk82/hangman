@@ -268,6 +268,7 @@ myUI = {
         return function() {
             var lsStash = parseLS("lsStash");
             var stashLen = lsStash.length;
+            var y = null;
 
             x.onclick = null;
             x.style.opacity = 0.2;
@@ -283,23 +284,26 @@ myUI = {
             var bs = basicStash[n];
             var bsLen = bs.length;
 
+
             for (var i = 0; i < bsLen; i++) {
                 if (myLetter === bs[i]) {
                     letter[i].innerHTML = myLetter;
-
+                    y = myLetter;
                     count++;
-                } else if(myLetter != bs[i]){
-                    //limb added
-
-/*
-ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as bs[i]
-*/
-
-                    myUI.runLimb();
-
-                }
+                }                
             }
+// ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as bs[i]
 
+            if(y === null){
+                limbs++;
+                if(limbs === 6) {
+                    alert("GAME OVER!");
+                    location.reload();
+                } else {
+                    alert("LIMB: " + limbs);
+                }
+                console.log(limbs);
+            }
             if(count === bsLen) {
                 //word solved
 
@@ -307,9 +311,10 @@ ISSUE: we need this to only fire once AND ONLY when myLetter is not the same as 
                 saveLS("lsStash",lsStash);
                 myUI.wordWon();
             }
+
         }
     },
-    runLimb: function(){
+    runLimb: function(fBool){
         limbs++;
         return console.log(limbs);
     },
