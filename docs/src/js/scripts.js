@@ -22,6 +22,8 @@ pageLabels = [
 
 myUI = {
     runSplashScreen: function(){
+        //window.screen.lockOrientation(orientation);
+
         var settings = parseLS("settings");
         if(settings){
             if (settings.splash === true) {
@@ -128,11 +130,16 @@ myUI = {
         }
     },
     genExtras: function(divBase,settings,uData) {
+        var donateForm = bySel(".donateForm");
         var extrasHolder = createEle("div");
 
-        extrasHolder.innerHTML = "extra shit";
+        extrasHolder.innerHTML = "If you can, please help us keep developing!";
 
         divBase.append(extrasHolder);
+
+        setTimeout(function(){
+            makeFull(donateForm);
+        },1000);
     },
     genLevels: function(divBase,settings,uData) {
         var levels = createEle("div"),
@@ -180,7 +187,17 @@ myUI = {
     },
     genSettings: function(divBase,settings,uData) {
         var settPage = createEle("div"),
-            splashBtn = createEle("button"),spl;
+            splashBtn = createEle("button"),spl,
+            audBtn = createEle("button"),tgl;
+
+        if(settings.sound.on === true){
+            tgl = "ON";
+        } else {
+            tgl = "OFF";
+        }
+
+        audBtn.innerHTML = "Audio: " + tgl;
+        audBtn.onclick = myUI.toggleAudio(settings,audBtn,tgl);
 
         if(settings.splash === true){
             spl = "ON";
@@ -190,7 +207,8 @@ myUI = {
         splashBtn.innerHTML = "Splash Screen: " + spl;
         splashBtn.onclick = myUI.toggleSplash(settings,splashBtn,spl);
 
-        settPage.append(splashBtn);
+        settPage.className = "settPage";
+        settPage.append(splashBtn,audBtn);
 
         divBase.append(settPage);
     },
@@ -400,7 +418,7 @@ myUI = {
         winMessage.innerHTML = "YOU HAVE WON A STAR!";
 
         bigStar.innerHTML = "⭐";
-        bigStar.style.fontSize = "10rem";
+        bigStar.style.fontSize = "8rem";
 
         if (uData.levels[uData.level].stars >= 2) {
             uData.levels[uData.level].stars = 3;
@@ -425,6 +443,16 @@ myUI = {
             makeFull(wordWinPage);
         },10);
         
+    },
+    toggleAudio: function(settings,audBtn,tgl){
+        return function() {
+            soundboard.runTick();
+            settings.sound.on = (settings.sound.on === true)? false : true;
+            tgl = (tgl === "ON")? "OFF" : "ON";
+            audBtn.innerHTML = "Audio: " + tgl;
+            saveLS("settings",settings);
+
+        }
     },
     toggleSplash: function(settings,splashBtn,spl){
         return function() {

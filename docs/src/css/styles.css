@@ -28,7 +28,7 @@ button {
 }
 .startBtnHolder button {
     margin: .3em auto;
-    font-size: 5vh;
+    font-size: 4vh;
     width:60vw;
     line-height: 10vh;
 }
@@ -125,19 +125,19 @@ button {
 }
 .botLeftArm,.botLeftArm_full {
     width:50px;
-    height: 126px;
+    height: 16.6vh;
 }
 .botRightArm,.botRightArm_full {
     width:50px;
-    height: 126px;
+    height: 16.6vh;
 }
 .botLeftLeg,.botLeftLeg_full {
     width:50px;
-    height: 126px;
+    height: 16.6vh;
 }
 .botRightLeg,.botRightLeg_full {
     width:50px;
-    height: 126px;
+    height: 16.6vh;
 }
 .row {
     line-height: 16.6vh;
@@ -160,6 +160,21 @@ button {
 .gameOver_full {
     opacity: 1;
 }
+.donateForm, .donateForm_full {
+    transition: 1s all;
+    transition-delay: 2s all;
+    position: fixed;
+    width: 100vw;
+    height: 40vh;
+    top:30vh;
+}
+.donateForm {
+    display: none;
+}
+.donateForm_full {
+    display: block;
+}
+
 /*ID*/
 
 /*MULTI*/
@@ -199,10 +214,18 @@ button {
 
 .divBase,.divBase_full {
     transition:1s all;
-    background-color: darkgrey;
+    background-color: lightgrey;
     color:white;
     width: 100vw;
     height: 100vh;
+}
+.settPage {
+    display: inline-grid;
+}
+.settPage button {
+    font-size: 1em;
+    padding: .8em;
+    margin: 1em;
 }
 .winPage {
     position: fixed;
@@ -220,7 +243,7 @@ button {
     top:0;
     left:0;
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
     background-color: white;
     text-align: center;
 }
@@ -235,7 +258,12 @@ button {
 /* phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 	/*DOM*/
-
+    .lttr {
+        width:11vw;
+        line-height: 11vw;
+        font-size: 8vw;
+        margin:1.5vw;
+    }
 	/*CLASS*/
 
 	/*ID*/
@@ -300,4 +328,29 @@ button {
 
 	/*KEYFRAME*/
 	
+}
+@media (orientation: landscape) {
+    /*DOM*/
+    .botBtn {
+        margin:0;
+        padding: 10px 0;
+        width: 50vw;
+        float:right;
+        display: block;
+        background-position: top;
+        background-size: 70%;
+    }
+    .blankletterGrid {
+        margin: 0;
+        width:50vw;
+        float:left;
+        display: block;
+    }
+    /*CLASS*/
+
+    /*ID*/
+
+    /*MULTI*/
+
+    /*KEYFRAME*/
 }
