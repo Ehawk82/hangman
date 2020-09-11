@@ -61,6 +61,11 @@ myUI = {
         myUI.loadout();
     },
     loadout: function(){
+        var donateForm = bySel(".donateForm_full");
+            console.log(donateForm);
+            if(donateForm){
+                takeFull(donateForm);
+            }
         var startPage = createEle("div"),
             startBtnHolder = createEle("div");
 
